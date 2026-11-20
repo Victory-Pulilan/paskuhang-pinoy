@@ -240,7 +240,7 @@
       entries.forEach(function (en) {
         if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0 });
     $$('.reveal').forEach(function (el) { io.observe(el); });
   } else {
     $$('.reveal').forEach(function (el) { el.classList.add('in'); });

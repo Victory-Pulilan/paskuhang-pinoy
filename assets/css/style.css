@@ -133,12 +133,20 @@
   }
   .cd-num{display:block; font-family:'Alfa Slab One',serif; font-size:clamp(1.2rem,5.6vw,2rem); color:var(--gold); line-height:1.15}
   .cd-lab{display:block; font-family:'Bungee',sans-serif; letter-spacing:.1em; font-size:clamp(.52rem,2.1vw,.68rem); opacity:.85; margin-top:.2rem}
+  /* "Mag-scroll" cue sa ilalim ng button */
   .scroll-cue{
-    position:absolute; bottom:1.4rem; left:50%; transform:translateX(-50%);
-    font-family:'Bungee',sans-serif; letter-spacing:.16em; font-size:.62rem; opacity:.8;
-    animation:bob 2.2s ease-in-out infinite; color:var(--gold-soft);
+    display:flex; flex-direction:column; align-items:center; gap:.15rem;
+    margin-top:clamp(1.1rem,3.5vh,1.8rem); text-decoration:none;
+    font-family:'Bungee',sans-serif; letter-spacing:.14em; font-size:clamp(.62rem,2.6vw,.72rem);
+    color:var(--gold-soft); text-transform:uppercase; opacity:.92;
   }
-  @keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,7px)}}
+  .scroll-cue svg{animation:bob 1.6s ease-in-out infinite}
+  .scroll-cue:hover{color:var(--gold)}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+  /* Sa phone: hindi buong screen ang hero para sumilip ang imbitasyon sa ibaba */
+  @media (max-width:600px){
+    header.hero{min-height:auto; padding-top:clamp(5.5rem,14vh,7rem); padding-bottom:1.6rem}
+  }
 
   /* ---------- Parchment letter ---------- */
   .parchment{
