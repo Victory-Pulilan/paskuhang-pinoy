@@ -138,7 +138,7 @@
   }
   function drawBunting() {
     drawBanderitas($('#bander-top'), false);
-    drawBanderitas($('#bander-bottom'), true);
+    drawBanderitas($('#bander-bottom'), false);
   }
   drawBunting();
 
