@@ -17,16 +17,7 @@
                   'Dress code: Kulturang Pinoy. Food cart booth design contest kada ministry.',
     eventLocation: '',               // ilagay ang venue kapag final na
     calStartUTC: '20261205T090000Z', // 5:00 PM PH
-    calEndUTC:   '20261205T140000Z', // 10:00 PM PH
-
-    // Saan ipapadala ang RSVP. Tingnan ang README.md.
-    //  • Naka-deploy sa Netlify  → iwanang blangko, gagana na agad ang Netlify Forms.
-    //  • Formspree / Apps Script → ilagay dito ang endpoint URL.
-    formEndpoint: '',
-
-    // Netlify Forms: 'auto' = gagana kapag *.netlify.app ang domain.
-    // Kung custom domain ang Netlify site mo, palitan ito ng true.
-    netlifyForms: 'auto'
+    calEndUTC:   '20261205T140000Z'  // 10:00 PM PH
   };
 
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -67,7 +58,7 @@
     hero.appendChild(d);
   });
 
-  [['div1', '#ef1f2b', '#ffc83d'], ['div2', '#17a35c', '#fff6e5'], ['div3', '#ffc83d', '#ef1f2b']]
+  [['div1', '#ef1f2b', '#ffc83d'], ['div2', '#17a35c', '#fff6e5']]
     .forEach(function (d) {
       var el = document.getElementById(d[0]);
       if (el) el.innerHTML = parol(d[1], d[2], 0.5);
@@ -238,147 +229,6 @@
         setTimeout(function () { btn.textContent = label; }, 2000);
       }).catch(function () {});
     }
-  });
-
-  /* ===================================================================
-     RSVP
-     ---------------------------------------------------------------
-     Sinusubukan ang mga ito, sunod-sunod:
-       1. CONFIG.formEndpoint  (Formspree, Google Apps Script, atbp.)
-       2. Artifact database    (kapag binuksan bilang Claude artifact)
-       3. Netlify Forms        (kapag naka-host sa Netlify)
-       4. Local storage        (huling hantungan — sinasabi sa gumagamit)
-     =================================================================== */
-  var form   = $('#rsvp-form');
-  var status = $('#rsvp-status');
-  var done   = $('#rsvp-done');
-  var tally  = $('#rsvp-tally');
-  var dbRef  = null;
-
-  function setStatus(msg, kind) {
-    status.textContent = msg || '';
-    status.className = 'form-status' + (kind ? ' ' + kind : '');
-  }
-
-  function showDone(title, msg) {
-    form.hidden = true;
-    done.hidden = false;
-    if (title) $('#rsvp-done-title').textContent = title;
-    if (msg)   $('#rsvp-done-msg').textContent = msg;
-    done.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
-  }
-
-  $('#rsvp-again').addEventListener('click', function () {
-    form.reset();
-    form.hidden = false;
-    done.hidden = true;
-    setStatus('');
-    form.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
-  });
-
-  function useNetlify() {
-    if (CONFIG.netlifyForms === true) return true;
-    if (CONFIG.netlifyForms === false) return false;
-    return /\.netlify\.(app|com)$/.test(location.hostname);   // 'auto'
-  }
-
-  function encodeForm(fd) {
-    var out = [];
-    fd.forEach(function (v, k) { out.push(encodeURIComponent(k) + '=' + encodeURIComponent(v)); });
-    return out.join('&');
-  }
-
-  /* Artifact database, kung available */
-  if (window.claude && typeof window.claude.use === 'function') {
-    window.claude.use('db').then(function (db) {
-      if (!db) return;
-      dbRef = db;
-      try {
-        db.collection('rsvps').onSnapshot(function (rows) {
-          var going = 0, heads = 0;
-          (rows || []).forEach(function (r) {
-            var d = r.data ? r.data() : r;
-            if (d && d.sagot === 'Sasama') { going++; heads += Number(d.bilang) || 1; }
-          });
-          if (going > 0) {
-            tally.hidden = false;
-            tally.textContent = going + (going === 1 ? ' sagot' : ' na sagot') + ' • ' + heads + ' ang darating';
-          }
-        });
-      } catch (e) { /* walang tally, ok lang */ }
-    }).catch(function () {});
-  }
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    if (form.querySelector('[name=bot-field]').value) return;   // honeypot
-
-    var btn = $('#rsvp-submit');
-    btn.disabled = true;
-    setStatus('Ipinapadala…');
-
-    var fd = new FormData(form);
-    var entry = {
-      pangalan: (fd.get('pangalan') || '').toString().trim(),
-      ministry: fd.get('ministry'),
-      sagot:    fd.get('sagot'),
-      bilang:   Number(fd.get('bilang')) || 1,
-      mensahe:  (fd.get('mensahe') || '').toString().trim(),
-      petsa:    new Date().toISOString()
-    };
-    var joyful = entry.sagot === 'Sasama';
-
-    function succeed() {
-      btn.disabled = false;
-      showDone(
-        joyful ? 'Yes! Nakatala ka na, ' + entry.pangalan.split(' ')[0] + '.' : 'Salamat sa pagsagot.',
-        joyful ? 'Kita-kits sa Disyembre 5, ika-5 ng hapon. Ihanda mo na ang kasuotan!'
-               : 'Sayang! Mami-miss ka namin. Hanggang sa susunod na pagkakataon.'
-      );
-    }
-    function fail(why) {
-      btn.disabled = false;
-      setStatus(why || 'May hindi umubra. Subukan ulit, o i-message na lang kami.', 'err');
-    }
-
-    // 1) Custom endpoint
-    if (CONFIG.formEndpoint) {
-      fetch(CONFIG.formEndpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(entry)
-      }).then(function (r) { r.ok ? succeed() : fail(); }).catch(function () { fail(); });
-      return;
-    }
-
-    // 2) Artifact database (kapag binuksan bilang Claude artifact)
-    if (dbRef) {
-      var id = 'r_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7);
-      Promise.resolve(dbRef.collection('rsvps').doc(id).set(entry))
-        .then(succeed)
-        .catch(function () { fail('Hindi ma-save ang sagot. Baka kailangan mong mag-sign in.'); });
-      return;
-    }
-
-    // 3) Netlify Forms
-    if (useNetlify()) {
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: encodeForm(fd)
-      }).then(function (r) { r.ok ? succeed() : fail(); }).catch(function () { fail(); });
-      return;
-    }
-
-    // 4) Walang backend — itabi muna sa device at sabihin nang tapat
-    try {
-      var key = 'paskuhang-rsvp';
-      var all = JSON.parse(localStorage.getItem(key) || '[]');
-      all.push(entry);
-      localStorage.setItem(key, JSON.stringify(all));
-    } catch (e) { /* private mode */ }
-    btn.disabled = false;
-    showDone('Na-save sa device mo.', 'Hindi pa naka-konekta ang RSVP sa form inbox — tingnan ang README para ma-set up.');
   });
 
   /* ===================================================================

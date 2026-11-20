@@ -67,7 +67,7 @@
     <div class="cd-box"><span class="cd-num" id="cd-s">—</span><span class="cd-lab">Segundo</span></div>
   </div>
 
-  <a class="hero-cta" href="#rsvp">Mag-RSVP ↓</a>
+  <a class="hero-cta" href="#imbitasyon">Basahin ang Imbitasyon ↓</a>
 </header>
 
 <!-- ============ ANG IMBITASYON ============ -->
@@ -110,78 +110,6 @@
       <p>Kulturang Pinoy ang damit ng gabi — narito ang ilang peg na pwedeng gayahin.</p>
     </div>
     <div class="wear" id="wear-grid"></div>
-  </div>
-</section>
-
-<!-- ============ RSVP ============ -->
-<section class="reveal" id="rsvp">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="divider" id="div3"></div>
-      <h2>Sasama ka ba sa <em>Paskuhan?</em></h2>
-      <p>Pakisagot bago mag-<strong>Disyembre 1</strong> para masigurado ang pagkain at upuan ng lahat.</p>
-    </div>
-
-    <div class="rsvp-card">
-      <!-- data-netlify: replies land in your Netlify dashboard when deployed there.
-           Walang Netlify? Tingnan ang README para sa Formspree / Google Apps Script. -->
-      <form id="rsvp-form" name="rsvp" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-        <input type="hidden" name="form-name" value="rsvp">
-        <p class="hp"><label>Huwag punan kung tao ka: <input name="bot-field"></label></p>
-
-        <div class="field">
-          <label for="f-name">Pangalan <span aria-hidden="true">*</span></label>
-          <input id="f-name" name="pangalan" type="text" required autocomplete="name" placeholder="Juan dela Cruz">
-        </div>
-
-        <div class="field">
-          <label for="f-ministry">Ministry <span aria-hidden="true">*</span></label>
-          <select id="f-ministry" name="ministry" required>
-            <option value="" disabled selected>Pumili ng ministry…</option>
-            <option>Admin</option>
-            <option>TSM</option>
-            <option>Ushering</option>
-            <option>Production &amp; Discipleship</option>
-            <option>Kids Ministry</option>
-            <option>Music Ministry</option>
-            <option>Communications</option>
-            <option>Prayer Team</option>
-            <option>Calumpit</option>
-            <option>Leaders / Panauhin</option>
-          </select>
-        </div>
-
-        <fieldset class="field">
-          <legend>Sasama ka ba? <span aria-hidden="true">*</span></legend>
-          <div class="pills">
-            <label class="pill"><input type="radio" name="sagot" value="Sasama" required><span>Oo, sasama ako!</span></label>
-            <label class="pill"><input type="radio" name="sagot" value="Hindi makakapunta"><span>Hindi makakapunta</span></label>
-          </div>
-        </fieldset>
-
-        <div class="field">
-          <label for="f-dala">Ilan kayong darating? (kasama ka)</label>
-          <input id="f-dala" name="bilang" type="number" min="1" max="10" step="1" value="1" inputmode="numeric">
-        </div>
-
-        <div class="field">
-          <label for="f-note">May gusto ka bang sabihin? <small>(opsyonal)</small></label>
-          <textarea id="f-note" name="mensahe" rows="2" maxlength="300" placeholder="Hal. may dala akong dagdag na dessert!"></textarea>
-        </div>
-
-        <button class="btn primary" type="submit" id="rsvp-submit">Ipadala ang RSVP</button>
-        <p class="form-status" id="rsvp-status" role="status" aria-live="polite"></p>
-      </form>
-
-      <div class="rsvp-done" id="rsvp-done" hidden>
-        <div class="check">✓</div>
-        <h3 id="rsvp-done-title">Salamat! Nakatala na ang sagot mo.</h3>
-        <p id="rsvp-done-msg">Kita-kits sa Disyembre 5, ika-5 ng hapon.</p>
-        <button class="btn ghost" type="button" id="rsvp-again">Magpadala ng isa pa</button>
-      </div>
-
-      <p class="tally" id="rsvp-tally" hidden></p>
-    </div>
   </div>
 </section>
 

@@ -120,7 +120,4 @@ else
   say "Mag-live ito 1–2 minuto matapos ang mga hakbang sa taas."
 fi
 say ""
-warn "Ang RSVP: kailangan ng backend sa GitHub Pages (walang server doon)."
-warn "Tingnan ang README.md → Option C (Google Apps Script, libre at walang limit)."
-say ""
 say "Para sa susunod na update:  git add -A && git commit -m 'update' && git push"
