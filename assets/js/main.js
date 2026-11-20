@@ -58,7 +58,7 @@
     hero.appendChild(d);
   });
 
-  [['div1', '#ef1f2b', '#ffc83d'], ['div2', '#17a35c', '#fff6e5']]
+  [['div1', '#ef1f2b', '#ffc83d'], ['div2', '#17a35c', '#fff6e5'], ['div3', '#ffc83d', '#ef1f2b']]
     .forEach(function (d) {
       var el = document.getElementById(d[0]);
       if (el) el.innerHTML = parol(d[1], d[2], 0.5);
