@@ -1,6 +1,6 @@
 # Paskuhang Pinoy — Landing Page
 
-Web invitation for the **Victory Pulilan Serve Team & Leaders Christmas Party**
+Web invitation for the **District 1 Serve Team and Leaders Christmas Party**
 (Disyembre 5, 2026 · ika-5 ng hapon).
 
 Plain HTML, CSS and JavaScript. No build step, no framework, no npm install.

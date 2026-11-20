@@ -1,5 +1,5 @@
 /* =====================================================================
-   Paskuhang Pinoy — Victory Pulilan Serve Team & Leaders Christmas Party
+   Paskuhang Pinoy — District 1 Serve Team and Leaders Christmas Party
    ---------------------------------------------------------------------
    Walang build step, walang dependencies. I-edit lang ang CONFIG sa baba.
    ===================================================================== */
@@ -13,7 +13,7 @@
     // Petsa at oras ng event (Philippine time, UTC+8)
     eventISO: '2026-12-05T17:00:00+08:00',
     eventTitle: 'Paskuhang Pinoy — Serve Team & Leaders Christmas Party',
-    eventDetails: 'Victory Pulilan Serve Team & Leaders Christmas Party. ' +
+    eventDetails: 'District 1 Serve Team and Leaders Christmas Party. ' +
                   'Dress code: Kulturang Pinoy. Food cart booth design contest kada ministry.',
     eventLocation: '',               // ilagay ang venue kapag final na
     calStartUTC: '20261205T090000Z', // 5:00 PM PH
