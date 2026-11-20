@@ -322,4 +322,11 @@
 /* Google Form button — gold para kapansin-pansin */
 .hero-cta.form{background:var(--gold); border-color:var(--gold); color:#45260f; box-shadow:0 10px 26px rgba(255,200,61,.35)}
 .hero-cta.form:hover{background:var(--green); border-color:var(--green); color:var(--cream)}
+/* Deadline + token note sa ilalim ng register button */
+.reg-note{
+  margin:.9rem auto 0; max-width:42ch; text-align:center; line-height:1.55;
+  font-family:'Lora',Georgia,serif; font-size:clamp(.82rem,3.3vw,.92rem); color:var(--cream); opacity:.95;
+}
+.reg-note strong{display:inline-block; margin-bottom:.15rem; font-family:'Bungee',sans-serif; font-weight:400; letter-spacing:.03em; font-size:clamp(.66rem,2.9vw,.8rem); color:var(--gold)}
+.nowrap{white-space:nowrap}
 
