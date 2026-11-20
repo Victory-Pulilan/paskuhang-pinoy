@@ -168,6 +168,11 @@
   .parchment p:last-child{margin-bottom:0}
   .greet{font-size:clamp(1.05rem,4vw,1.25rem); font-weight:500; color:var(--red-deep)}
   .greet strong{font-weight:700}
+  /* Sa phone: "Magandang araw!" sa sariling linya; "Disyembre 5" sa ilalim ng "Kita-kits sa" */
+  @media (max-width:600px){
+    .greet-hi{display:block; margin-bottom:.15rem}
+    .cta .date-line{display:block; white-space:nowrap}
+  }
   .sub-head{
     font-family:'Bungee',sans-serif; letter-spacing:.03em; color:var(--green-deep);
     font-size:clamp(.88rem,3.6vw,1.25rem); margin:2.1rem 0 .7rem; text-align:center; line-height:1.4;
