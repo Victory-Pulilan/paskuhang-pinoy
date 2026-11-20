@@ -155,11 +155,10 @@
     ['Admin', 'Turon &amp; Banana Cue'],
     ['TSM', 'Hotdogs &amp; Marshmallows'],
     ['Ushering', 'Balut, Mani &amp; Crackers'],
-    ['Production &amp; Discipleship', 'Sweet Corn &amp; Popcorn'],
-    ['Kids Ministry', 'Taho'],
+    ['Production, Discipleship &amp; Prayer Team', 'Sweet Corn &amp; Popcorn'],
+    ['Kids Ministry', 'Taho, Puto &amp; Kutsinta'],
     ['Music Ministry', 'Palamig, Buko Juice &amp; Ice Scramble'],
     ['Communications', 'Sorbetes'],
-    ['Prayer Team', 'Puto &amp; Kutsinta'],
     ['Calumpit', 'Fishball &amp; Ihaw-Ihaw / Isaw']
   ];
   $('#ministries').innerHTML = ministries.map(function (m, i) {
