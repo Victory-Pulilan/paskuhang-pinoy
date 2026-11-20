@@ -206,13 +206,15 @@
   /* ===================================================================
      Calendar + share
      =================================================================== */
-  $('#cal').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
+  var calBtn = $('#cal');
+  if (calBtn) calBtn.href = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
     + '&text=' + encodeURIComponent(CONFIG.eventTitle)
     + '&dates=' + CONFIG.calStartUTC + '/' + CONFIG.calEndUTC
     + '&details=' + encodeURIComponent(CONFIG.eventDetails)
     + (CONFIG.eventLocation ? '&location=' + encodeURIComponent(CONFIG.eventLocation) : '');
 
-  $('#share').addEventListener('click', function (e) {
+  var shareBtn = $('#share');
+  if (shareBtn) shareBtn.addEventListener('click', function (e) {
     e.preventDefault();
     var data = {
       title: 'Paskuhang Pinoy',

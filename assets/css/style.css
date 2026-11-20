@@ -302,9 +302,10 @@
   transition:transform .25s ease, background .25s ease, border-color .25s ease, color .25s ease;
 }
 .hero-cta:hover{background:var(--green); border-color:var(--green); transform:translateY(-2px)}
-.hero-ctas{display:flex; flex-wrap:wrap; gap:.7rem; justify-content:center; margin-top:clamp(1.6rem,5vw,2.2rem)}
-.hero-ctas .hero-cta{margin-top:0}
+.hero-cta.form{display:inline-flex; flex-direction:column; align-items:center; gap:.3em; padding:.95em 2em}
+.hero-cta .cta-main{font-size:1.12em; line-height:1.2}
+.hero-cta .cta-sub{font-family:'Lora',Georgia,serif; letter-spacing:.02em; font-size:.95em; font-weight:600; opacity:.85}
 /* Google Form button — gold para kapansin-pansin */
-.hero-cta.form, .btn.form{background:var(--gold); border-color:var(--gold); color:#45260f; box-shadow:0 10px 26px rgba(255,200,61,.35)}
-.hero-cta.form:hover, .btn.form:hover{background:var(--green); border-color:var(--green); color:var(--cream)}
+.hero-cta.form{background:var(--gold); border-color:var(--gold); color:#45260f; box-shadow:0 10px 26px rgba(255,200,61,.35)}
+.hero-cta.form:hover{background:var(--green); border-color:var(--green); color:var(--cream)}
 
