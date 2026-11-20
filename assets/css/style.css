@@ -224,6 +224,8 @@
 
   /* ---------- CTA / footer ---------- */
   .cta{text-align:center}
+  /* Isang linya lang ang "Ika-5 ng hapon…" kapag kasya ang screen */
+  @media (min-width:720px){ .cta .sec-head p{max-width:none; white-space:nowrap} }
   .btns{display:flex; gap:.7rem; justify-content:center; flex-wrap:wrap; margin-top:1.8rem}
   .btn{
     display:inline-block; text-decoration:none; cursor:pointer;
